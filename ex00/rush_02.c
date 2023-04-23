@@ -6,7 +6,7 @@
 /*   By: auhong <auhong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:25:18 by auhong            #+#    #+#             */
-/*   Updated: 2023/04/23 23:29:35 by auhong           ###   ########.fr       */
+/*   Updated: 2023/04/23 23:41:57 by auhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ char	*expand(char *output, int size)
 	new_output = malloc(size + 1);
 	while (idx < size)
 	{
-		new_output = output[idx++];
+		new_output[idx] = output[idx];
+		++idx;
 	}
 	new_output[idx] = 0;
 	free(output);
+	return (new_output);
 }
 
 void	parse_key(long *key, char *value, char *output)
@@ -51,9 +53,8 @@ void	parse_key(long *key, char *value, char *output)
 	start_output = output;
 	output = rm_spc(output);
 	while (output[idx] != ':')
-	{
 		++idx;
-	}
+
 	key = ft_atoi(start_output, idx);
 	key_size = find_key_size(output + idx);
 	value = malloc(key_size);
@@ -71,6 +72,8 @@ t_list	*parse_dict(t_list *dict, int input[], char *output, int size)
 	t_list	*new_dict;
 
 	parse_key(&key, value, output);
+	idx = 0;
+	value = 0;
 	while (idx < size)
 	{
 		if (key == input[idx])
@@ -91,7 +94,6 @@ t_list	*parse_dict(t_list *dict, int input[], char *output, int size)
 
 t_list	*read_file(char *dict_path, t_list *dict, int input[], int input_size)
 {
-	int		idx;
 	char	buf[1];
 	int		file_id;
 	char	*output;
@@ -99,7 +101,7 @@ t_list	*read_file(char *dict_path, t_list *dict, int input[], int input_size)
 
 	file_id = open(dict_path, O_RDONLY);
 	if (file_id == -1)
-		put_str("Dict Error\n");
+		ft_putstr("Dict Error\n");
 	size = 0;
 	while (read(file_id, buf, 1) != 0)
 	{
@@ -124,6 +126,8 @@ int	main(int argc, char *argv[])
 	t_list	*cur_word;
 
 	idx = 0;
+	dict = 0;
+	cur_word = 0;
 	if (argc == 2)
 	{
 		print_number(atoi(argv[1]));

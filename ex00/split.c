@@ -6,7 +6,7 @@
 /*   By: auhong <auhong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:31:14 by qiwang            #+#    #+#             */
-/*   Updated: 2023/04/23 23:32:09 by auhong           ###   ########.fr       */
+/*   Updated: 2023/04/23 23:36:34 by auhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,4 @@ int	*parse_number(char *output, int *size)
 		number = number % dictionary_values[i];
 	}
 	return (res);
-}
-
-int main(void)
-{
-	return (0);
 }
