@@ -6,14 +6,13 @@
 /*   By: auhong <auhong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:31:14 by qiwang            #+#    #+#             */
-/*   Updated: 2023/04/23 23:26:25 by auhong           ###   ########.fr       */
+/*   Updated: 2023/04/23 23:32:09 by auhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 
 int	ft_atoi(char *str)
 {
@@ -67,9 +66,8 @@ int	find_size(long number, int dictionary_values[32])
 	return (size);
 }
 
-void	create_digit(char *digits, int *idx)
+void	create_digit(int *digits, int *idx)
 {
-
 	digits[(*idx)++] = 1000000000;
 	digits[(*idx)++] = 1000000;
 	digits[(*idx)++] = 1000;
@@ -88,7 +86,7 @@ void	create_digit(char *digits, int *idx)
 	digits[(*idx)++] = 16;
 }
 
-void	create_digit2(char *digits, int *idx)
+void	create_digit2(int *digits, int *idx)
 {
 	digits[(*idx)++] = 15;
 	digits[(*idx)++] = 14;
@@ -117,12 +115,12 @@ int	*parse_number(char *output, int *size)
 	int	*res;
 
 	i = 0;
-	*size = find_size(number, dictionary_values);
 	res = malloc(sizeof(int) * (*size));
 	number = ft_atoi(output);
+	*size = find_size(number, dictionary_values);
 	inner_idx = 0;
 	create_digit(dictionary_values, &i);
-	create_digit2(dictionary_values, &i)
+	create_digit2(dictionary_values, &i);
 	i = 0;
 	while (i < 32 && number > 0)
 	{
@@ -143,4 +141,9 @@ int	*parse_number(char *output, int *size)
 		number = number % dictionary_values[i];
 	}
 	return (res);
+}
+
+int main(void)
+{
+	return (0);
 }

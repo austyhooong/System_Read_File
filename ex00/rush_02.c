@@ -6,13 +6,14 @@
 /*   By: auhong <auhong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:25:18 by auhong            #+#    #+#             */
-/*   Updated: 2023/04/23 23:25:05 by auhong           ###   ########.fr       */
+/*   Updated: 2023/04/23 23:29:35 by auhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <fcntl.h>
 #include "ft.h"
+#include <stdlib.h>
 
 void	print_number(int number);
 void	ft_putchar(char letter);
