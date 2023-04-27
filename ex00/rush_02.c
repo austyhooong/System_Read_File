@@ -6,7 +6,7 @@
 /*   By: auhong <auhong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:25:18 by auhong            #+#    #+#             */
-/*   Updated: 2023/04/23 23:41:57 by auhong           ###   ########.fr       */
+/*   Updated: 2023/04/23 23:43:25 by auhong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		find_key_size(char *str);
 int		print_dict(t_list *dict, int input[], int size);
 t_list	*create_list(long key, char *value);
 int		*parse_number(char *input, int *size);
+int	ft_atoi(char *str);
 
 char	*expand(char *output, int size)
 {
@@ -55,7 +56,7 @@ void	parse_key(long *key, char *value, char *output)
 	while (output[idx] != ':')
 		++idx;
 
-	key = ft_atoi(start_output, idx);
+	*key = ft_atoi(start_output, idx);
 	key_size = find_key_size(output + idx);
 	value = malloc(key_size);
 	key_idx = 0;
@@ -74,6 +75,7 @@ t_list	*parse_dict(t_list *dict, int input[], char *output, int size)
 	parse_key(&key, value, output);
 	idx = 0;
 	value = 0;
+	new_dict = 0;
 	while (idx < size)
 	{
 		if (key == input[idx])
